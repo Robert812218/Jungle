@@ -17,6 +17,23 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
   end
 
+  # authentication
+  GifVault::Application.routes.draw.do
+    root to: 'gif#cool'
+    get '/cool' => 'gif#cool'
+    get '/sweat' => 'gif#sweet'
+
+    get '/login' => 'sessions#new'
+    post '/login' => 'sessions#create'
+    get '/logout' => 'sessions#destroy'
+  
+    get '/signup' => 'users#new'
+    post '/users' => 'users#create'
+
+    get '/signup' => 'users#new'
+    get '/users' => 'users#create'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

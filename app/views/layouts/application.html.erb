@@ -3,6 +3,7 @@
 <head>
   <title>Jungle</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags  %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,8 +11,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  
   <%= render 'layouts/top_nav' %>
+
+  <% if current_user %>
+  
+    Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+    <% end %>
+
+  <%= yield %>
 
   <main class="container">
     <%= yield %>
